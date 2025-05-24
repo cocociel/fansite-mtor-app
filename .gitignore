@@ -1,0 +1,4 @@
+# .gitignore（ルート用）
+node_modules
+dist
+.env
