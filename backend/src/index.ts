@@ -1,6 +1,10 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
+import { connectDB } from './utils/db';
 import songRouter from './routes/song';
+
+dotenv.config();
 
 const app = express();
 const PORT = 5000;
@@ -14,7 +18,10 @@ app.get('/', (req, res) => {
 });
 
 // ソングページ
-app.get('/song', songRouter);
+app.use('/song', songRouter);
+
+// DB起動
+connectDB();
 
 // サーバ起動確認
 app.listen(PORT, () => {
