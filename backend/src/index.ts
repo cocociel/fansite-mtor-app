@@ -1,29 +1,54 @@
+require('dotenv').config();
 import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import { connectDB } from './utils/db';
-import songRouter from './routes/song';
+import { ROUTES } from './constants/routes'
 
-dotenv.config();
-
+const mongoose = require('mongoose');
+const Song = require('./models/song');
 const app = express();
 const PORT = 5000;
-
-app.use(cors());
 app.use(express.json());
 
 // トップページ
-app.get('/', (req, res) => {
+app.get(ROUTES.TOP, (req, res) => {
     res.send('open top-page');
 });
 
-// ソングページ
-app.use('/song', songRouter);
-
-// DB起動
-connectDB();
-
-// サーバ起動確認
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+// 曲リストページ
+app.get(ROUTES.SONG, (req, res) => {
+    Song.find()
+        .then((data: object) => res.send(data))
+        .catch((err: object) => console.log(`曲がありませんでした: ${err}`))
 });
+
+// 曲リストページ（artist指定）
+const findArtist: string = 'みかさくん';
+app.get(ROUTES.SONG_FIND_BY_ARTIST, (req, res) => {
+    Song.find({ artists: findArtist })
+        .then((data: object) => res.send(data))
+        .catch((err: object) => console.log(`${findArtist}の曲がありませんでした: ${err}`))
+});
+
+
+// 曲リスト作成
+// 現状私が曲をINSERTすればいいので
+// 定数埋めて/song-insertでGET実行すれば登録できるようにしてある
+const setTitle = '';
+const setArtists = [''];
+app.get(ROUTES.SONG_INS, (req, res) => {
+    const song = new Song({
+        title: setTitle,
+        artists: setArtists,
+    });
+
+    song.save()
+        .then((data: object) => res.send(data))
+        .catch((err: object) => console.log(`曲[${setTitle}]が登録できませんでした: ${err}`));
+});
+
+// DB接続とサーバ起動
+mongoose.connect(process.env.DB_URL)
+    // DB接続ができたらサーバを起動する
+    .then((res: object) => app.listen(PORT, () => {
+        console.log(`サーバが起動しました: http://localhost:${PORT}`);
+    }))
+    .catch((err: object) => console.log(err));
