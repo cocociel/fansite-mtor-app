@@ -1,6 +1,6 @@
 export const ROUTES = {
     TOP: '/',
-    SONG: '/song',
-    SONG_INS: '/song-insert',
-    SONG_FIND_BY_ARTIST: '/song-artist',
+    SONGS: '/songs',
+    SONGS_INS: '/songs-insert',
+    SONGS_FIND_BY_ARTIST: '/songs-artist',
 } as const satisfies Record<string, string>

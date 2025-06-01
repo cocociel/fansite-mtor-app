@@ -1,12 +1,14 @@
 require('dotenv').config();
 import express from 'express';
 import { ROUTES } from './constants/routes'
+import cors from 'cors';
 
 const mongoose = require('mongoose');
 const Song = require('./models/song');
 const app = express();
 const PORT = 5000;
 app.use(express.json());
+app.use(cors());
 
 // トップページ
 app.get(ROUTES.TOP, (req, res) => {
@@ -14,7 +16,7 @@ app.get(ROUTES.TOP, (req, res) => {
 });
 
 // 曲リストページ
-app.get(ROUTES.SONG, (req, res) => {
+app.get(ROUTES.SONGS, (req, res) => {
     Song.find()
         .then((data: object) => res.send(data))
         .catch((err: object) => console.log(`曲がありませんでした: ${err}`))
@@ -22,7 +24,7 @@ app.get(ROUTES.SONG, (req, res) => {
 
 // 曲リストページ（artist指定）
 const findArtist: string = 'みかさくん';
-app.get(ROUTES.SONG_FIND_BY_ARTIST, (req, res) => {
+app.get(ROUTES.SONGS_FIND_BY_ARTIST, (req, res) => {
     Song.find({ artists: findArtist })
         .then((data: object) => res.send(data))
         .catch((err: object) => console.log(`${findArtist}の曲がありませんでした: ${err}`))
@@ -34,7 +36,7 @@ app.get(ROUTES.SONG_FIND_BY_ARTIST, (req, res) => {
 // 定数埋めて/song-insertでGET実行すれば登録できるようにしてある
 const setTitle = '';
 const setArtists = [''];
-app.get(ROUTES.SONG_INS, (req, res) => {
+app.get(ROUTES.SONGS_INS, (req, res) => {
     const song = new Song({
         title: setTitle,
         artists: setArtists,
