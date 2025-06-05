@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { TagButton } from '../components/TagButton';
 import { MEMBERS } from '../constants/Members';
+import SongPanel from '../components/SongPanel';
 
 type Song = {
     title: string;
@@ -32,24 +33,22 @@ export default function SongListPage() {
     if (loading) return <p className="p-2">読み込み中...</p>;
 
     return (
-        <main className="p-2">
+        <main className="p-2 bg-gray-100 h-screen">
             <h2 className="text-base font-bold">歌リスト</h2>
-            <p className="text-sm mb-4">めておらが歌っている曲をまとめています</p>
+            <p className="text-sm mb-2">めておらが歌っている曲をまとめています</p>
             <div className="flex flex-wrap">
-                <TagButton name={MEMBERS['MTOR'].name} color={MEMBERS['MTOR'].color} />
-                <TagButton name={MEMBERS['SHION'].name} color={MEMBERS['SHION'].color} />
-                <TagButton name={MEMBERS['LAPIS'].name} color={MEMBERS['LAPIS'].color} />
-                <TagButton name={MEMBERS['LIGHT'].name} color={MEMBERS['LIGHT'].color} />
-                <TagButton name={MEMBERS['MELT'].name} color={MEMBERS['MELT'].color} />
-                <TagButton name={MEMBERS['MIKASA'].name} color={MEMBERS['MIKASA'].color} />
-                <TagButton name={MEMBERS['ROSE'].name} color={MEMBERS['ROSE'].color} />
+                <TagButton name={"#" + MEMBERS['MTOR'].name} color={MEMBERS['MTOR'].color} />
+                <TagButton name={"#" + MEMBERS['SHION'].name} color={MEMBERS['SHION'].color} />
+                <TagButton name={"#" + MEMBERS['LAPIS'].name} color={MEMBERS['LAPIS'].color} />
+                <TagButton name={"#" + MEMBERS['LIGHT'].name} color={MEMBERS['LIGHT'].color} />
+                <TagButton name={"#" + MEMBERS['MELT'].name} color={MEMBERS['MELT'].color} />
+                <TagButton name={"#" + MEMBERS['MIKASA'].name} color={MEMBERS['MIKASA'].color} />
+                <TagButton name={"#" + MEMBERS['ROSE'].name} color={MEMBERS['ROSE'].color} />
             </div>
+            <hr className="mt-4 mb-2" />
             <ul className="space-y-2">
                 {songs.map((song, index) => (
-                    <li key={index} className="border p-2 rounded-md shadow">
-                        <p className="font-semibold">{song.title}</p>
-                        <p className="text-sm text-gray-600">{song.artists.join(', ')}</p>
-                    </li>
+                    <SongPanel title={song.title} artists={song.artists.join(', ')} />
                 ))}
             </ul>
         </main>
