@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { TagButton } from '../components/TagButton';
+import { MEMBERS } from '../constants/Members';
 
 type Song = {
     title: string;
@@ -33,6 +35,15 @@ export default function SongListPage() {
         <main className="p-2">
             <h2 className="text-base font-bold">歌リスト</h2>
             <p className="text-sm mb-4">めておらが歌っている曲をまとめています</p>
+            <div className="flex flex-wrap">
+                <TagButton name={MEMBERS['MTOR'].name} color={MEMBERS['MTOR'].color} />
+                <TagButton name={MEMBERS['SHION'].name} color={MEMBERS['SHION'].color} />
+                <TagButton name={MEMBERS['LAPIS'].name} color={MEMBERS['LAPIS'].color} />
+                <TagButton name={MEMBERS['LIGHT'].name} color={MEMBERS['LIGHT'].color} />
+                <TagButton name={MEMBERS['MELT'].name} color={MEMBERS['MELT'].color} />
+                <TagButton name={MEMBERS['MIKASA'].name} color={MEMBERS['MIKASA'].color} />
+                <TagButton name={MEMBERS['ROSE'].name} color={MEMBERS['ROSE'].color} />
+            </div>
             <ul className="space-y-2">
                 {songs.map((song, index) => (
                     <li key={index} className="border p-2 rounded-md shadow">
