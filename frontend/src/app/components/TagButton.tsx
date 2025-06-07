@@ -1,13 +1,14 @@
+import { Member } from '../constants/Members';
+
 interface TagButtonProps {
-    name: string,
-    color: string,
-    onClick?: () => void;
+    member: Member;
+    onClick: (artists: string) => void;
 }
 
-export const TagButton: React.FC<TagButtonProps> = ({ name, color, onClick }) => {
+export const TagButton: React.FC<TagButtonProps> = ({ member, onClick }) => {
     return (
         <button
-            onClick={onClick}
+            onClick={() => onClick(member.name)}
             className="
                 font-['Noto_Sans_Japanese']
                 text-base
@@ -27,10 +28,10 @@ export const TagButton: React.FC<TagButtonProps> = ({ name, color, onClick }) =>
                 hover:bg-gray-400
             "
             style={{
-                borderColor: color,
+                borderColor: member.color,
             }}
         >
-            {name}
+            {`#${member.nameJapanese}`}
         </button >
     );
 };

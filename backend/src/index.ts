@@ -12,10 +12,10 @@ app.use(cors());
 
 // 曲リストページ
 app.get(ROUTES.SONGS, async (req, res) => {
-    const artist = req.query.artist;
+    const artists = req.query.artists;
     let songs;
-    if (artist) {
-        songs = await Song.find({ artists: artist });
+    if (artists) {
+        songs = await Song.find({ artists: artists });
     } else {
         songs = await Song.find();
     }
@@ -24,13 +24,19 @@ app.get(ROUTES.SONGS, async (req, res) => {
 
 // 曲リスト作成
 // 現状私が曲をINSERTすればいいので
-// 定数埋めて/song-insertでGET実行すれば登録できるようにしてある
-const setTitle = '';
-const setArtists = [''];
+// 定数埋めて/api/songs-insertでGET実行すれば登録できるようにしてある
+const setTitle = 'Want You';
+const setArtists = ['rose', 'light'];
+const setUrl = 'https://www.youtube.com/watch?v=G1JhO0Yi02E';
+const setOriginal = true;
+const setPostDate = '2025-05-18';
 app.get(ROUTES.SONGS_INS, (req, res) => {
     const song = new Song({
         title: setTitle,
         artists: setArtists,
+        url: setUrl,
+        original: setOriginal,
+        postDate: setPostDate,
     });
 
     song.save()

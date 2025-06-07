@@ -10,6 +10,18 @@ const songSchema = new Schema({
         type: [String],
         required: true,
     },
+    url: {
+        type: String,
+        required: false,
+    },
+    original: {
+        type: Boolean,
+        required: false,
+    },
+    postDate: {
+        type: Date,
+        required: false,
+    },
 });
 
 const Song = mongoose.model('Song', songSchema);

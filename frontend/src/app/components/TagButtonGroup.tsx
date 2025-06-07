@@ -1,16 +1,20 @@
 import { TagButton } from './TagButton'
 import { MEMBERS } from '../constants/Members';
 
-export default function TagButtonGroup() {
+interface TagButtonGroupProps {
+  onClick: (artists: string) => void;
+}
+
+export default function TagButtonGroup({ onClick }: TagButtonGroupProps) {
   return (
     <div className="flex flex-wrap">
-      <TagButton name={"#" + MEMBERS['MTOR'].name} color={MEMBERS['MTOR'].color} />
-      <TagButton name={"#" + MEMBERS['SHION'].name} color={MEMBERS['SHION'].color} />
-      <TagButton name={"#" + MEMBERS['LAPIS'].name} color={MEMBERS['LAPIS'].color} />
-      <TagButton name={"#" + MEMBERS['LIGHT'].name} color={MEMBERS['LIGHT'].color} />
-      <TagButton name={"#" + MEMBERS['MELT'].name} color={MEMBERS['MELT'].color} />
-      <TagButton name={"#" + MEMBERS['MIKASA'].name} color={MEMBERS['MIKASA'].color} />
-      <TagButton name={"#" + MEMBERS['ROSE'].name} color={MEMBERS['ROSE'].color} />
+      <TagButton member={MEMBERS['MTOR']} onClick={onClick} />
+      <TagButton member={MEMBERS['SHION']} onClick={onClick} />
+      <TagButton member={MEMBERS['LAPIS']} onClick={onClick} />
+      <TagButton member={MEMBERS['LIGHT']} onClick={onClick} />
+      <TagButton member={MEMBERS['MELT']} onClick={onClick} />
+      <TagButton member={MEMBERS['MIKASA']} onClick={onClick} />
+      <TagButton member={MEMBERS['ROSE']} onClick={onClick} />
     </div>
   );
 }
