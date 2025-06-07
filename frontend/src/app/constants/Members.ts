@@ -19,7 +19,9 @@ export const MEMBERS: MemberMap = {
     'LAPIS': { name: "lapis", nameJapanese: "Lapis", color: "#30cfff" }, // 水色
     'MELT': { name: "melt", nameJapanese: "メルト・ダ・テンシ", color: "#ffffff" }, // 白色
     'MIKASA': { name: "mikasa", nameJapanese: "みかさくん", color: "#ff5bb5" }, // ピンク色
-    'LIGHT': { name: "light", nameJapanese: "明雷らいと", color: "#ffe600" } // 黄色
+    'LIGHT': { name: "light", nameJapanese: "明雷らいと", color: "#ffe600" }, // 黄色
+    'ROOT': { name: "root", nameJapanese: "るぅと", color: "#ffe600" }, // 黄色
+    'TERUTO': { name: "teruto", nameJapanese: "てるとくん", color: "#ff5bb5" }, // ピンク色
 } as const;
 
 export type MemberType = typeof MEMBERS[keyof typeof MEMBERS]; 

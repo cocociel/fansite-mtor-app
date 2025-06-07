@@ -25,11 +25,11 @@ app.get(ROUTES.SONGS, async (req, res) => {
 // 曲リスト作成
 // 現状私が曲をINSERTすればいいので
 // 定数埋めて/api/songs-insertでGET実行すれば登録できるようにしてある
-const setTitle = 'Want You';
-const setArtists = ['rose', 'light'];
-const setUrl = 'https://www.youtube.com/watch?v=G1JhO0Yi02E';
+const setTitle = 'NEXT STAR';
+const setArtists = ['mtor'];
+const setUrl = 'https://www.youtube.com/watch?v=YrBaOYuXqbE';
 const setOriginal = true;
-const setPostDate = '2025-05-18';
+const setPostDate = '2025-02-23';
 app.get(ROUTES.SONGS_INS, (req, res) => {
     const song = new Song({
         title: setTitle,
