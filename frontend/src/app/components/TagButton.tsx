@@ -1,11 +1,13 @@
 interface TagButtonProps {
     name: string,
     color: string,
+    onClick?: () => void;
 }
 
-export const TagButton: React.FC<TagButtonProps> = ({ name, color }) => {
+export const TagButton: React.FC<TagButtonProps> = ({ name, color, onClick }) => {
     return (
         <button
+            onClick={onClick}
             className="
                 font-['Noto_Sans_Japanese']
                 text-base

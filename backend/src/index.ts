@@ -10,26 +10,17 @@ const PORT = 5000;
 app.use(express.json());
 app.use(cors());
 
-// トップページ
-app.get(ROUTES.TOP, (req, res) => {
-    res.send('open top-page');
-});
-
 // 曲リストページ
-app.get(ROUTES.SONGS, (req, res) => {
-    Song.find()
-        .then((data: object) => res.send(data))
-        .catch((err: object) => console.log(`曲がありませんでした: ${err}`))
+app.get(ROUTES.SONGS, async (req, res) => {
+    const artist = req.query.artist;
+    let songs;
+    if (artist) {
+        songs = await Song.find({ artists: artist });
+    } else {
+        songs = await Song.find();
+    }
+    res.json(songs);
 });
-
-// 曲リストページ（artist指定）
-const findArtist: string = 'みかさくん';
-app.get(ROUTES.SONGS_FIND_BY_ARTIST, (req, res) => {
-    Song.find({ artists: findArtist })
-        .then((data: object) => res.send(data))
-        .catch((err: object) => console.log(`${findArtist}の曲がありませんでした: ${err}`))
-});
-
 
 // 曲リスト作成
 // 現状私が曲をINSERTすればいいので
@@ -43,7 +34,7 @@ app.get(ROUTES.SONGS_INS, (req, res) => {
     });
 
     song.save()
-        .then((data: object) => res.send(data))
+        .then((data: object) => console.log(data))
         .catch((err: object) => console.log(`曲[${setTitle}]が登録できませんでした: ${err}`));
 });
 

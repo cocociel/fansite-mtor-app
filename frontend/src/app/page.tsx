@@ -1,6 +1,5 @@
 'use client';
 import Navbar from './components/Navbar';
-
 // トップページ
 export default function TopPage() {
   return (

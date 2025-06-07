@@ -6,6 +6,7 @@
     "react": "^19.1.0"
   },
   "devDependencies": {
+    "@types/express": "^5.0.2",
     "@types/react": "^19.1.6"
   }
 }
