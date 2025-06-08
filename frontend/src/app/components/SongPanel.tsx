@@ -30,7 +30,6 @@ const SongPanel: React.FC<SongPanelProps> = ({ title, artists, url, original, po
         backgroundColor: 'background.paper',
         borderRadius: '8px',
         boxShadow: 1,
-        margin: '8px 0',
       }}
     >
       <Box sx={{
@@ -75,15 +74,30 @@ const SongPanel: React.FC<SongPanelProps> = ({ title, artists, url, original, po
         {`${artists} ${postDate ? '-' + formatDate(postDate) + '-' : ''}`}
       </Typography>
       {url && (
-        <Box sx={{ margin: '8px 0' }}>
-          <ReactPlayer
-            url={url}
-            width="432px"
-            height="243px"
-            controls={true}
-            light={true}
-            playing={false}
-          />
+        <Box sx={{
+          margin: '8px 0',
+          display: 'flex',
+          justifyContent: 'center',
+          width: '100%',
+          position: 'relative',
+          paddingTop: '56.25%' // 16:9のアスペクト比
+        }}>
+          <Box sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%'
+          }}>
+            <ReactPlayer
+              url={url}
+              width="100%"
+              height="100%"
+              controls={true}
+              light={true}
+              playing={false}
+            />
+          </Box>
         </Box>
       )}
     </Box>

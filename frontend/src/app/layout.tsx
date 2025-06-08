@@ -27,9 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="antialiased">
+      <body className="antialiased min-h-screen bg-gray-100">
         <Navbar /> {/* 全ページ共通のナビバー */}
-        <main className="pt-8">{children}</main> {/* ナビバー高さ分の余白 */}
+        <main className="pt-8 min-h-screen">{children}</main> {/* ナビバー高さ分の余白 */}
       </body>
     </html>
   );

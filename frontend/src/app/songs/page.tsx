@@ -48,7 +48,7 @@ export default function SongListPage() {
     if (loading) return <p className="p-2">読み込み中...</p>;
 
     return (
-        <main className="p-2 bg-gray-100">
+        <main className="p-2 max-w-[1500px] mx-auto">
             <h2 className="text-base font-bold">歌リスト</h2>
             <p className="text-sm">めておらが歌っている曲をまとめています</p>
             <p className="text-sm mb-2">タグをクリックするとそのメンバーが歌っている曲一覧に更新されます</p>
